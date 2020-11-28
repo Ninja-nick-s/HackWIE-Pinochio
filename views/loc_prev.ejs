@@ -8,6 +8,22 @@
           document.getElementById("prelon").textContent = lon;
           document.getElementById("prelat").textContent = lat;
           
+          const button = document.getElementById('submit1');
+          button.addEventListener('click', async event => {
+            const data = {lat , lon};
+          const options = {
+              method : 'POST',
+              headers :{
+                  'Content-Type': 'application/json'
+              },
+              body : JSON.stringify(data)
+              
+          };
+          const res = await fetch('/api' , options);
+          const json = await res.json();
+          console.log(json);
+          });
+
         });
     } else {
         console.log("Geolocation is not supported by this browser.");

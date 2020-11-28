@@ -7,6 +7,22 @@
           lat_a = position.coords.latitude;
           document.getElementById("aftlon").textContent = lon_a;
           document.getElementById("aftlat").textContent = lat_a;
+
+          const button = document.getElementById('submit2');
+          button.addEventListener('click', async event =>{
+            const data_a = {lat_a , lon_a};
+          const options = {
+              method : 'POST',
+              headers :{
+                  'Content-Type': 'application/json'
+              },
+              body : JSON.stringify(data_a)
+              
+          };
+          const res = await fetch('/api-a' , options);
+          const json_a = await res.json();
+          console.log(json_a);
+          });
           
         });
     } else {
