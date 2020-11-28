@@ -13,7 +13,26 @@ app.set('view engine', 'ejs');
 // app.use(bodyParser.urlencoded({
 //   extended: true
 // }));
-//mongoose.connect("mongodb://localhost:27017/DBname", {useNewUrlParser : true,useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/modelname", {useNewUrlParser : true,useUnifiedTopology: true});
+
+mongoose.set('useFindAndModify', false);
+
+app.get("/newloc",function(req ,res){
+    res.render("loc_aft");
+});
+
+app.post("/prevloc",function(req,res){
+    res.redirect("/newloc");
+});
+
+app.get("/prevloc",function(req ,res){
+    res.render("loc_prev");
+});
+
+app.post("/",function(req,res){
+    res.redirect("/prevloc");
+});
+
 app.get("/",function(req,res){
     res.render("front");
 })

@@ -1,0 +1,20 @@
+<script>
+    var lon,lat;
+
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(async position => {
+          lon = position.coords.longitude;
+          lat = position.coords.latitude;
+          document.getElementById("prelon").textContent = lon;
+          document.getElementById("prelat").textContent = lat;
+          
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+</script>
+<form class="location" action="/prevloc" method="post">
+    <h2> longitude : <span id="prelon" name="long"></span> </h2>
+    <h2> latitude : <span id="prelat" name="lati"></span></h2>
+    <button type="submit" name="button" id="submit1">submit location</button>
+</form>
