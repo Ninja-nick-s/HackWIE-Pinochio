@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu-Health</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Poppins&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&family=Poppins&display=swap"
+        rel="stylesheet">
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script>
+          (function($) {
+      
+      // Add smooth scrolling to all links in navbar
+      $(".navbar a,a.btn-appoint, .quick-info li a, .overlay-detail a").on('click', function(event) {
+      
+        var hash = this.hash;
+        if (hash) {
+          event.preventDefault();
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function() {
+            window.location.hash = hash;
+          });
+        }
+      
+      });
+      
+      $(".navbar-collapse a").on('click', function() {
+        $(".navbar-collapse.collapse").removeClass('in');
+      });
+      
+      //jQuery to collapse the navbar on scroll
+      $(window).scroll(function() {
+        if ($(".navbar-default").offset().top > 50) {
+          $(".navbar-fixed-top").addClass("top-nav-collapse");
+        } else {
+          $(".navbar-fixed-top").removeClass("top-nav-collapse");
+        }
+      });
+      
+      })(jQuery);
+        </script>
+
+</head>
