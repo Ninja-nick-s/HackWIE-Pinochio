@@ -1,0 +1,25 @@
+{
+  "name": "hackwie-pinochio",
+  "version": "1.0.0",
+  "description": "hackwie hackathon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ninja-nick-s/HackWIE-Pinochio.git"
+  },
+  "author": "pinochio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ninja-nick-s/HackWIE-Pinochio/issues"
+  },
+  "homepage": "https://github.com/Ninja-nick-s/HackWIE-Pinochio#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.17"
+  }
+}
