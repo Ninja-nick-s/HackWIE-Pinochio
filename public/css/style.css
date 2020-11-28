@@ -41,7 +41,8 @@ a, a:hover, a:focus, a:active{
 }
 
 .section-padding{
-	padding: 60px 0px;
+  padding: 60px 0px;
+  background-color: gainsboro;
 
 }
 h2 {
@@ -206,7 +207,14 @@ services
 .icon-info p{
 	font-size: 15px !important;
 }
-
+.section-padding .feature >p{
+  font-size: 14px;
+}
+.section-padding .feature >p>span{
+  font-size: 17px;
+  color: #0cb8b6;
+  font-weight: 600;
+}
 
 /***************************************
 cta-1
@@ -248,40 +256,31 @@ td {
 /***************************************
 about
 ***************************************/
-#about{
-    background-color: rgba(238, 238, 238, 0.15);
+#about {
+ 
+  text-align: center;
+  margin-bottom: 10px;
 }
-.lg-line{
-	line-height: 1.4;
-	font-size: 28px;
+#about .content {
+  padding: 26px 200px;
+  padding-bottom: 41px;
 }
-.more-features-box-text-icon {
-    float: left;
-    width: 40px;
-    height: 40px;
-    padding-top: 6px;
-    background: #0cb8b6;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    color: #fff;
-    text-align: center;
+#about .content > h1 {
+  color: #0CB8B6;
+  margin-bottom: 10px;
+  font-family: "Poppins", sans-serif;
 }
-.more-features-box-text-description h3{
-    padding-bottom: 15px;
+#about .content > h1 span{
+  color: black;
 }
-.more-features-box-text-icon i {
-    font-size: 18px;
-    line-height: 26px;
+#about .content > p {
+  font-size: 15px;
+  font-weight: 400;
 }
-.more-features-box-text-description{
-	margin-left: 80px;
-	margin-bottom: 35px;
+#about .content > p > span{
+  color: coral;
+  font-weight: 600;
 }
-.sec-para{
-	padding-bottom: 10px;
-}
-
 /***************************************
 footer
 ***************************************/
