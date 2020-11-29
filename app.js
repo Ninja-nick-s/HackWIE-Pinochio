@@ -50,13 +50,6 @@ function findDistance(lat1,lat2,lon1,lon2) {
     return val / 180.0 * PI;
 }
 
-app.post("/learn",function(req,res){
-    Health.findOne({'title':'location'}, '_id', function (err, person) {
-        if (err) console.log(err);
-        id = person._id ;
-        
-    });
-});
 
 
 // Health.findOne({'title':'location'}, '_id', function (err, person) {
