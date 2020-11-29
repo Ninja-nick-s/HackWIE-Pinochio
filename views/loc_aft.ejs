@@ -1,3 +1,33 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/button.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="bac">
+        <img src="../assets/exer3.jpg" alt="">
+    </div>
+
+
+
+<form class="location" action="/newloc" method="post">
+    <div class="latlon">
+    <h2> LONGITUDE : <span id="aftlon"></span> </h2>
+    <h2> LATITUDE : <span id="aftlat"></span></h2>
+</div>
+    <button type="submit" name="button" id="submit2" class="aut">SUBMIT END LOCATION</button>
+</form>
+
+
 <script>
     var lon,lat;
 
@@ -30,8 +60,5 @@
     }
 </script>
 
-<form class="location" action="/newloc" method="post">
-    <h2> longitude : <span id="aftlon"></span> </h2>
-    <h2> latitude : <span id="aftlat"></span></h2>
-    <button type="submit" name="button" id="submit2">submit location</button>
-</form>
+</body>
+</html>
