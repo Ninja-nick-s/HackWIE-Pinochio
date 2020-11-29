@@ -1,3 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/button.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bac">
+        <img src="../assets/exer4.jpg" alt="">
+    </div>
+   
+
+<form class="location" action="/prevloc" method="post">
+    <div class="latlon">
+    <h2> LONGITUDE : <span id="prelon" name="long"></span> </h2>
+    <h2> LATITUDE : <span id="prelat" name="lati"></span></h2>
+</div>
+    <button type="submit" name="button" id="submit1" class="aut">SUBMIT START LOCATION</button>
+</form>
+
+
+
+
 <script>
     var lon,lat;
 
@@ -29,8 +56,5 @@
         console.log("Geolocation is not supported by this browser.");
     }
 </script>
-<form class="location" action="/prevloc" method="post">
-    <h2> longitude : <span id="prelon" name="long"></span> </h2>
-    <h2> latitude : <span id="prelat" name="lati"></span></h2>
-    <button type="submit" name="button" id="submit1">submit location</button>
-</form>
+</body>
+</html>
