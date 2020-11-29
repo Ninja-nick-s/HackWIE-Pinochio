@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 // app.use(bodyParser.urlencoded({
 //   extended: true
 // }));
+
 mongoose.connect("mongodb://localhost:27017/healthDB", {useNewUrlParser : true,useUnifiedTopology: true});
 
 mongoose.set('useFindAndModify', false);
@@ -27,6 +28,100 @@ const healthschema = {
 
 const Health = mongoose.model("Health" , healthschema);
 
+function findDistance(lat1,lat2,lon1,lon2) {
+    var R = 6371e3; // R is earth’s radius
+    var lat1radians = toRadians(lat1);
+    var lat2radians = toRadians(lat2);
+ 
+    var latRadians = toRadians(lat2-lat1);
+    var lonRadians = toRadians(lon2-lon1);
+ 
+    var a = Math.sin(latRadians/2) * Math.sin(latRadians/2) +
+         Math.cos(lat1radians) * Math.cos(lat2radians) *
+         Math.sin(lonRadians/2) * Math.sin(lonRadians/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+ 
+    var d = R * c;
+    
+    return d ;
+ }
+ function toRadians(val){
+    var PI = 3.1415926535;
+    return val / 180.0 * PI;
+}
+
+app.post("/learn",function(req,res){
+    Health.findOne({'title':'location'}, '_id', function (err, person) {
+        if (err) console.log(err);
+        id = person._id ;
+        
+    });
+});
+
+
+// Health.findOne({'title':'location'}, '_id', function (err, person) {
+// if(id == person._id){
+//     app.get("/:id",function(req ,res){
+   
+//         //if (err) console.log(err);
+//         //var id = person._id ;   
+//         //res.render("learn");
+//         res.send("hello");
+//     });
+// }
+// });
+app.get("/decoy",function(req ,res){
+   
+    //if (err) console.log(err);
+    //var id = person._id ;   
+    //res.render("learn");
+    res.render("decoy");
+});
+// });
+// app.get("/learn",function(req ,res){
+//     res.render("learn");
+// });
+
+app.post("/auth",function(req,res){
+    Health.findOne({'title':'location'}, 'location_lat1 location_lon1 location_lat2 location_lon2 _id', function (err, person) {
+        if (err) console.log(err);
+        var lat1=parseFloat(person.location_lat1) ;
+        var lon1= parseFloat(person.location_lon1);
+        var lat2=parseFloat(person.location_lat2) ;
+        var lon2= parseFloat(person.location_lon2);
+        var id= person._id;
+        console.log(id);
+        // console.log(lat1);
+        // console.log(lon1);
+        // console.log(lat2);
+        // console.log(lon2);
+        var distance = findDistance(lat1,lat2,lon1,lon2);
+        console.log(distance);
+        var calories=0 ;
+        var calories = calories + distance*0.04 ;
+        var threshold = 0 ;
+        if(calories >= threshold){
+            res.redirect("/decoy");
+        }
+        else{
+            res.redirect("/newloc");
+        }
+
+      });
+});
+
+
+app.get("/auth",function(req ,res){
+    res.render("auth");
+});
+
+app.post("/newloc",function(req,res){
+    res.redirect("/auth");
+});
+
+app.get("/newloc",function(req ,res){
+    res.render("loc_aft");
+});
 app.post("/api-a" ,function(req ,res){
     console.log(req.body);
     const data = req.body;
@@ -80,19 +175,6 @@ app.post("/api" ,function(req ,res){
     });
     newhealth.save();
 });
-
-app.get("/auth",function(req ,res){
-    res.render("auth");
-});
-
-app.post("/newloc",function(req,res){
-    res.redirect("/auth");
-});
-
-app.get("/newloc",function(req ,res){
-    res.render("loc_aft");
-});
-
 app.post("/prevloc",function(req,res){
     res.redirect("/newloc");
 });
@@ -100,14 +182,27 @@ app.post("/prevloc",function(req,res){
 app.get("/prevloc",function(req ,res){
     res.render("loc_prev");
 });
+app.post("/delete" ,function(req ,res){
+    Health.deleteMany(function(err){
+        if(!err){
+            console.log("deleted location");
+        }
+        else
+        {
+            console.log(err);
+        }
+    });
+    res.redirect("/");
+});
 
 app.post("/",function(req,res){
     res.redirect("/prevloc");
 });
 
-app.get("/",function(req,res){
+app.get("/",function(req ,res){
     res.render("front");
-})
+});
+
 
 app.listen(process.env.PORT || 3000, function() {
     console.log("Server started on port 3000");
