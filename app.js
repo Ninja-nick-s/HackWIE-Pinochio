@@ -51,29 +51,11 @@ function findDistance(lat1,lat2,lon1,lon2) {
 }
 
 
-
-// Health.findOne({'title':'location'}, '_id', function (err, person) {
-// if(id == person._id){
-//     app.get("/:id",function(req ,res){
-   
-//         //if (err) console.log(err);
-//         //var id = person._id ;   
-//         //res.render("learn");
-//         res.send("hello");
-//     });
-// }
-// });
 app.get("/decoy",function(req ,res){
-   
-    //if (err) console.log(err);
-    //var id = person._id ;   
-    //res.render("learn");
+
     res.render("decoy");
 });
-// });
-// app.get("/learn",function(req ,res){
-//     res.render("learn");
-// });
+
 
 app.post("/auth",function(req,res){
     Health.findOne({'title':'location'}, 'location_lat1 location_lon1 location_lat2 location_lon2 _id', function (err, person) {
@@ -159,14 +141,30 @@ app.post("/api" ,function(req ,res){
     });
     const lat = req.body.lat;
     const lon = req.body.lon;
-    const newhealth = new Health ({
-        title: "location",
-        location_lat1 : lat,
-        location_lon1 : lon,
-        location_lat2: "0",
-        location_lon2:"0"
-    });
-    newhealth.save();
+    Health.findOneAndUpdate(
+        {title: "location"},
+        {$set : { location_lat1: lat }},
+        function(err){
+            if(!err){
+                console.log("successfully updated");
+            }
+            else{
+                console.log("unsuccessful");
+            }
+        }
+    );
+    Health.findOneAndUpdate(
+        {title: "location"},
+        {$set : { location_lon1: lon }},
+        function(err){
+            if(!err){
+                console.log("successfully updated");
+            }
+            else{
+                console.log("unsuccessful");
+            }
+        }
+    );
 });
 app.post("/prevloc",function(req,res){
     res.redirect("/newloc");
@@ -189,6 +187,14 @@ app.post("/delete" ,function(req ,res){
 });
 
 app.post("/",function(req,res){
+    const newhealth = new Health ({
+        title: "location",
+        location_lat1 : "0",
+        location_lon1 : "0",
+        location_lat2: "0",
+        location_lon2:"0"
+    });
+    newhealth.save();
     res.redirect("/prevloc");
 });
 
